@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real Estate — Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        #12151A;
+    --bg-alt:    #1B1F27;
+    --card:      #1F232B;
+    --accent:    #FF5A36;
+    --accent2:   #FFC145;
+    --text:      #F5F3EE;
+    --text-soft: #A9AFBC;
+    --line:      rgba(245,243,238,0.09);
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', system-ui, sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; text-decoration:none; }
+  ::selection{ background:var(--accent); color:var(--bg); }
+  .display{ font-family:'Archivo Black', 'Inter', sans-serif; }
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+  header{
+    position:sticky; top:0; z-index:20;
+    background:rgba(18,21,26,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{ display:flex; align-items:center; justify-content:space-between; padding:20px 0; }
+  .brand{ font-size:20px; letter-spacing:0.01em; }
+  .brand span{ color:var(--accent); }
+  nav{ display:flex; gap:32px; align-items:center; }
+  nav a{ font-size:14px; font-weight:600; color:var(--text-soft); transition:color .2s; }
+  nav a:hover{ color:var(--text); }
+  .cta-btn{
+    background:var(--accent); color:#fff !important; padding:11px 22px;
+    border-radius:4px; font-weight:700; font-size:14px;
+    transition:transform .15s ease, background .2s ease; display:inline-block;
+  }
+  .cta-btn:hover{ background:#ff6f4d; transform:translateY(-1px); }
+  .mobile-hide{ display:flex; }
+  @media (max-width:800px){ .mobile-hide{ display:none; } }
+
+  .hero{ position:relative; overflow:hidden; padding:110px 0 140px; }
+  .hero::before{
+    content:""; position:absolute; top:-20%; right:-10%; width:60%; height:140%;
+    background:linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+    clip-path:polygon(30% 0, 100% 0, 100% 100%, 0% 100%); opacity:0.14; z-index:0;
+  }
+  .hero-inner{ position:relative; z-index:1; max-width:720px; }
+  .eyebrow{ display:inline-flex; align-items:center; gap:8px; color:var(--accent); font-weight:700; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:22px; }
+  .eyebrow::before{ content:""; width:22px; height:2px; background:var(--accent); }
+  .hero h1{ font-size:clamp(40px, 6.4vw, 76px); line-height:1.02; margin:0 0 22px 0; letter-spacing:-0.01em; }
+  .hero h1 .hl{ color:var(--accent); }
+  .hero p.lead{ font-size:19px; color:var(--text-soft); max-width:520px; margin:0 0 36px 0; }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:56px; }
+  .btn-ghost{ border:1.5px solid var(--line); padding:11px 24px; border-radius:4px; font-weight:700; font-size:14px; color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--text); }
+  .stat-row{ display:grid; grid-template-columns:repeat(3, auto); gap:48px; }
+  @media (max-width:560px){ .stat-row{ grid-template-columns:1fr 1fr; gap:28px; } }
+  .stat-num{ font-family:'Archivo Black'; font-size:34px; color:var(--accent2); }
+  .stat-label{ font-size:12.5px; color:var(--text-soft); text-transform:uppercase; letter-spacing:0.06em; margin-top:4px; }
+
+  section{ padding:100px 0; }
+  .sec-tag{ color:var(--accent); font-weight:700; font-size:13px; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px; }
+  .sec-head{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:48px; flex-wrap:wrap; gap:20px; }
+  .sec-head h2{ font-size:clamp(28px,4vw,42px); margin:0; letter-spacing:-0.01em; }
+  .sec-head p{ color:var(--text-soft); max-width:380px; margin:0; font-size:15px; }
+
+  .listing-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:26px; }
+  .listing-card{ background:var(--card); border:1px solid var(--line); border-radius:10px; overflow:hidden; transition:transform .2s ease, border-color .2s ease; }
+  .listing-card:hover{ transform:translateY(-4px); border-color:rgba(255,90,54,0.4); }
+  .listing-img{
+    height:190px; background:repeating-linear-gradient(45deg, #262b34 0 12px, #23272f 12px 24px);
+    background-size:cover; background-position:center;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--text-soft); font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; position:relative;
+  }
+  .price-tag{ position:absolute; top:14px; left:14px; background:var(--accent); color:#fff; font-weight:800; font-size:14px; padding:6px 12px; border-radius:4px; }
+  .listing-body{ padding:20px 22px 22px; }
+  .listing-body h3{ margin:0 0 6px 0; font-size:17px; }
+  .listing-body .addr{ color:var(--text-soft); font-size:13.5px; margin-bottom:14px; }
+  .listing-meta{ display:flex; gap:16px; font-size:13px; color:var(--text-soft); border-top:1px solid var(--line); padding-top:14px; }
+  .listing-meta b{ color:var(--text); }
+
+  .about{ background:var(--bg-alt); }
+  .about-grid{ display:grid; grid-template-columns:280px 1fr; gap:56px; align-items:center; }
+  @media (max-width:760px){ .about-grid{ grid-template-columns:1fr; } }
+  .agent-photo{
+    aspect-ratio:1/1; border-radius:10px; background:linear-gradient(150deg, var(--accent) 0%, var(--accent2) 100%);
+    background-size:cover; background-position:center;
+    display:flex; align-items:center; justify-content:center; font-family:'Archivo Black'; font-size:15px; color:rgba(0,0,0,0.55); text-align:center; padding:20px;
+  }
+  .about-copy h2{ font-size:clamp(26px,3.6vw,36px); margin:0 0 18px 0; }
+  .about-copy p{ color:var(--text-soft); font-size:15.5px; max-width:560px; margin:0 0 26px 0; }
+  .badge-row{ display:flex; gap:12px; flex-wrap:wrap; }
+  .badge{ border:1px solid var(--line); padding:8px 14px; border-radius:20px; font-size:12.5px; font-weight:600; color:var(--text-soft); }
+
+  .testi-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); gap:24px; }
+  .testi-card{ background:var(--card); border:1px solid var(--line); border-radius:10px; padding:26px 24px; }
+  .testi-card .quote{ font-size:15px; color:var(--text); margin-bottom:18px; }
+  .testi-card .who{ font-size:13px; color:var(--accent2); font-weight:700; }
+  .stars{ color:var(--accent2); font-size:14px; margin-bottom:10px; letter-spacing:2px; }
+
+  .contact{ position:relative; background:linear-gradient(135deg, #1a1d24, #12151A); overflow:hidden; }
+  .contact::before{
+    content:""; position:absolute; bottom:-30%; left:-10%; width:50%; height:140%;
+    background:var(--accent); clip-path:polygon(0 0, 100% 30%, 70% 100%, 0 100%); opacity:0.10;
+  }
+  .contact-inner{ position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  @media (max-width:800px){ .contact-inner{ grid-template-columns:1fr; } }
+  .contact-info h2{ font-size:clamp(28px,4vw,42px); margin:0 0 18px 0; }
+  .contact-info p{ color:var(--text-soft); font-size:15.5px; margin:0 0 28px 0; max-width:420px; }
+  .info-row{ display:flex; gap:12px; align-items:center; margin-bottom:16px; font-size:15px; }
+  .info-row .k{ color:var(--accent2); font-weight:700; width:70px; flex-shrink:0; font-size:12.5px; text-transform:uppercase; letter-spacing:0.05em; }
+
+  form{ display:flex; flex-direction:column; gap:14px; }
+  input, textarea{ background:var(--card); border:1px solid var(--line); border-radius:6px; padding:13px 16px; color:var(--text); font-family:'Inter'; font-size:14px; }
+  input::placeholder, textarea::placeholder{ color:var(--text-soft); }
+  textarea{ resize:vertical; min-height:100px; }
+  button.submit{ background:var(--accent); color:#fff; border:none; padding:14px 20px; border-radius:6px; font-weight:800; font-size:14.5px; cursor:pointer; transition:background .2s ease; }
+  button.submit:hover{ background:#ff6f4d; }
+
+  footer{ border-top:1px solid var(--line); padding:34px 0; }
+  .foot-row{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color:var(--text-soft); }
+</style>
+<script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <div class="brand display" id="nav-brand">…</div>
+    <nav class="mobile-hide">
+      <a href="#listings">Listings</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact" class="cta-btn">Get In Touch</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow" id="hero-eyebrow">…</div>
+    <h1 class="display">Find your next place <span class="hl">without the guesswork.</span></h1>
+    <p class="lead" id="hero-lead">…</p>
+    <div class="hero-ctas">
+      <a href="#listings" class="cta-btn">View Listings</a>
+      <a href="#contact" class="btn-ghost">Book a Call</a>
+    </div>
+    <div class="stat-row" id="stat-row"></div>
+  </div>
+</section>
+
+<section id="listings">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-tag">Featured</div>
+        <h2 class="display">Current Listings</h2>
+      </div>
+      <p>Updated directly from the site editor — no code required.</p>
+    </div>
+    <div class="listing-grid" id="listing-grid"></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="agent-photo" id="agent-photo">[AGENT PHOTO]</div>
+    <div class="about-copy">
+      <div class="sec-tag" id="about-tag">…</div>
+      <h2 class="display">Local expertise, straight talk.</h2>
+      <p id="about-bio">…</p>
+      <div class="badge-row" id="badge-row"></div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-tag">Reviews</div>
+        <h2 class="display">What clients say</h2>
+      </div>
+    </div>
+    <div class="testi-grid" id="testi-grid"></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-inner">
+    <div class="contact-info">
+      <div class="sec-tag">Let's Talk</div>
+      <h2 class="display">Ready to make a move?</h2>
+      <p id="contact-lead">…</p>
+      <div class="info-row"><span class="k">Phone</span><span id="contact-phone">…</span></div>
+      <div class="info-row"><span class="k">Email</span><span id="contact-email">…</span></div>
+      <div class="info-row"><span class="k">Serving</span><span id="contact-city">…</span></div>
+      <div class="info-row" id="contact-address-row" style="display:none;"><span class="k">Office</span><span id="contact-address">…</span></div>
+    </div>
+    <form onsubmit="event.preventDefault(); alert('This is a sample form — connect it to an email service or backend before going live.');">
+      <input type="text" placeholder="Full name" required>
+      <input type="email" placeholder="Email address" required>
+      <input type="tel" placeholder="Phone number">
+      <textarea placeholder="Tell us what you're looking for..."></textarea>
+      <button class="submit" type="submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span id="foot-left">…</span>
+    <span id="foot-right">…</span>
+  </div>
+</footer>
+
+<script>
+async function loadSite(){
+  const res = await fetch('content/site.json', { cache: 'no-store' });
+  const d = await res.json();
+
+  document.getElementById('nav-brand').textContent = d.agent_name;
+  document.getElementById('hero-eyebrow').textContent = `${d.brokerage}${d.division ? ' · ' + d.division : ''} · ${d.city_region}`;
+  document.getElementById('hero-lead').textContent = d.hero_lead;
+
+  document.getElementById('stat-row').innerHTML = `
+    <div><div class="stat-num display">${d.stats.homes_sold}</div><div class="stat-label">Homes Sold</div></div>
+    <div><div class="stat-num display">${d.stats.years_experience}</div><div class="stat-label">Years Experience</div></div>
+    <div><div class="stat-num display">${d.stats.avg_days_on_market}</div><div class="stat-label">Avg. Days on Market</div></div>
+  `;
+
+  document.getElementById('listing-grid').innerHTML = d.listings.map(l => `
+    <div class="listing-card">
+      <div class="listing-img" style="${l.photo ? `background-image:url('${l.photo}')` : ''}">
+        ${l.photo ? '' : '[LISTING PHOTO]'}
+        <span class="price-tag">$${l.price}</span>
+      </div>
+      <div class="listing-body">
+        <h3>${l.address}</h3>
+        <div class="addr">${l.neighborhood}</div>
+        <div class="listing-meta">
+          <span><b>${l.beds}</b> bed</span>
+          <span><b>${l.baths}</b> bath</span>
+          <span><b>${l.sqft}</b> sqft</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('about-tag').textContent = `About ${d.agent_name}`;
+  document.getElementById('about-bio').textContent = d.about_bio;
+  document.getElementById('badge-row').innerHTML = d.about_badges.map(b => `<span class="badge">${b}</span>`).join('');
+
+  document.getElementById('testi-grid').innerHTML = d.testimonials.map(t => `
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <div class="quote">"${t.quote}"</div>
+      <div class="who">— ${t.name}, ${t.city}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('contact-lead').textContent = `Whether you're buying, selling, or just want to know what your home is worth — reach out and ${d.agent_name} will get back to you personally.`;
+  document.getElementById('contact-phone').textContent = d.phone;
+  document.getElementById('contact-email').textContent = d.email;
+  document.getElementById('contact-city').textContent = d.city_region;
+  if (d.office_address) {
+    document.getElementById('contact-address-row').style.display = 'flex';
+    document.getElementById('contact-address').textContent = d.office_address;
+  }
+
+  document.getElementById('foot-left').textContent = `© 2026 ${d.agent_name} · ${d.brokerage}`;
+  document.getElementById('foot-right').textContent = [d.dre_license, d.nmls_license].filter(Boolean).join(' · ');
+}
+loadSite();
+
+if (window.netlifyIdentity) {
+  netlifyIdentity.on('init', user => {
+    if (!user) {
+      netlifyIdentity.on('login', () => { window.location.href = '/admin/'; });
+    }
+  });
+  // Detect invite / password-recovery / confirmation links and open the set-password modal
+  const hash = window.location.hash;
+  if (hash && (hash.includes('confirmation_token') || hash.includes('invite_token') || hash.includes('recovery_token'))) {
+    netlifyIdentity.open();
+  }
+}
+</script>
+
+</body>
+</html>
