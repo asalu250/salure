@@ -138,6 +138,7 @@
   footer{ border-top:1px solid var(--line); padding:34px 0; }
   .foot-row{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:13px; color:var(--text-soft); }
 </style>
+<script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -289,6 +290,19 @@ async function loadSite(){
   document.getElementById('foot-right').textContent = [d.dre_license, d.nmls_license].filter(Boolean).join(' · ');
 }
 loadSite();
+
+if (window.netlifyIdentity) {
+  netlifyIdentity.on('init', user => {
+    if (!user) {
+      netlifyIdentity.on('login', () => { window.location.href = '/admin/'; });
+    }
+  });
+  // Detect invite / password-recovery / confirmation links and open the set-password modal
+  const hash = window.location.hash;
+  if (hash && (hash.includes('confirmation_token') || hash.includes('invite_token') || hash.includes('recovery_token'))) {
+    netlifyIdentity.open();
+  }
+}
 </script>
 
 </body>
