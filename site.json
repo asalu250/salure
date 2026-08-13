@@ -1,17 +1,22 @@
 {
-  "agent_name": "[DAD'S NAME]",
-  "brokerage": "[BROKERAGE NAME]",
-  "city_region": "[CITY, STATE]",
-  "phone": "[PHONE NUMBER]",
-  "email": "[EMAIL ADDRESS]",
-  "hero_lead": "[DAD'S NAME] helps buyers and sellers move fast and move smart across [CITY / REGION] — straight answers, real numbers, zero pressure.",
+  "agent_name": "Salu Joseph",
+  "title": "Broker Associate & Mortgage Loan Advisor",
+  "brokerage": "Intero | A Berkshire Hathaway Affiliate",
+  "division": "Commercial Division",
+  "city_region": "Pleasanton, CA / East Bay",
+  "office_address": "6601 Owens Drive #250, Pleasanton, CA 94588",
+  "phone": "510.358.0201",
+  "email": "sjoseph@intero.com",
+  "dre_license": "CA DRE 01960445",
+  "nmls_license": "NMLS 2018895",
+  "hero_lead": "Salu Joseph helps buyers, sellers, and commercial clients move fast and move smart across the East Bay — straight answers, real numbers, zero pressure.",
   "stats": {
     "homes_sold": "150+",
     "years_experience": "12",
     "avg_days_on_market": "18"
   },
-  "about_bio": "[One or two sentences on his background — how long he's worked in the area, what he specializes in, what makes his approach different.]",
-  "about_badges": ["Licensed Realtor®", "X Years in City", "Certification / Specialty"],
+  "about_bio": "Salu is a Broker Associate and Mortgage Loan Advisor with Intero, a Berkshire Hathaway affiliate, handling commercial and residential real estate along with mortgage services across the East Bay.",
+  "about_badges": ["Broker Associate", "Mortgage Loan Advisor", "CA DRE #01960445", "NMLS #2018895"],
   "listings": [
     {
       "address": "[Street Address]",
